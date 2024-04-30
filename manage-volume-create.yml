@@ -6,3 +6,5 @@
 
   tasks:
     - name: Create a volume
+
+    - name: Delete a volume

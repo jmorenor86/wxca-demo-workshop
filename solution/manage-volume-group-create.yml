@@ -27,9 +27,3 @@
         name: "{{ _name_ }}"
         state: present
         snapshotpolicy: "{{ _snapshotpolicy_ }}"
-        
-
-    - name: Create snapshot policy
-    
-
-
