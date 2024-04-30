@@ -1,0 +1,34 @@
+---
+- name: Add Volume to Volume group ibm spectrum
+  hosts: localhost
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Create a volume
+      # Content suggestion provided by Ansible Lightspeed
+      ibm.spectrum_virtualize.ibm_svc_manage_volume:
+        clustername: "{{ _clustername_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
+        log_path: /tmp/playbook.debug
+        name: "volume_1_mapfre"
+        pool: "{{ _pool_ }}"
+        size: "1"
+        unit: "gb"
+        volumegroup: "{{ _volume_group_ }}"
+        state: present
+
+    - name: Delete a volume
+      # Content suggestion provided by Ansible Lightspeed
+      ibm.spectrum_virtualize.ibm_svc_manage_volume:
+        clustername: "{{ _clustername_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
+        log_path: /tmp/playbook.debug
+        name: volume_test_volume_group
+        pool: "{{ _pool_ }}"
+        size: '1'
+        unit: gb
+        volumegroup: "{{ _volume_group_ }}"
+        state: absent

@@ -1,0 +1,42 @@
+---
+- name: Add Volume to Volume group ibm spectrum
+  hosts: localhost
+  vars_files:
+    - vars.yml
+
+  tasks:
+    # Get info all volumes with user and password & Get info all volumegroup & Get info snapshotpolicy  into register=snapshotpolicyinfo & print all snapshotpolicyinfo
+    # Content suggestion provided by Ansible Lightspeed
+    - name: Get info all volumes with user and password
+      ibm.spectrum_virtualize.ibm_svc_info:
+        clustername: "{{ _clustername_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
+        log_path: /tmp/ansible.log
+        gather_subset:
+          - vol
+      register: volinfo
+
+    - name: Get info all volumegroup
+      ibm.spectrum_virtualize.ibm_svc_info:
+        clustername: "{{ _clustername_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
+        log_path: /tmp/ansible.log
+        gather_subset:
+          - volumegroup
+      register: volgroupinfo
+
+    - name: Get info snapshotpolicy  into register=snapshotpolicyinfo
+      ibm.spectrum_virtualize.ibm_svc_info:
+        clustername: "{{ _clustername_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
+        log_path: /tmp/ansible.log
+        gather_subset:
+          - snapshotpolicy
+      register: snapshotpolicyinfo
+
+    - name: Print all snapshotpolicyinfo
+      ansible.builtin.debug:
+        msg: "{{ snapshotpolicyinfo }}"

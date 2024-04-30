@@ -1,0 +1,18 @@
+---
+- name: Add Volume to Volume group ibm spectrum
+  hosts: localhost
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Print info all volumes with user and password
+
+
+    - name: Print info all volumegroup
+
+
+    - name: Print name all pools
+
+
+    - name: Print poolinfo Pool name
+
