@@ -32,3 +32,4 @@
         unit: gb
         volumegroup: "{{ _volume_group_ }}"
         state: absent
+
