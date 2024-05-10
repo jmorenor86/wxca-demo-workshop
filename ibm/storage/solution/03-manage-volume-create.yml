@@ -1,0 +1,30 @@
+---
+- name: Create volume to ibm spectrum virtualize
+  hosts: localhost
+  vars:
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    clustername: "{{ _clustername_ }}"
+    namevolume: volume_group_ansible
+    size: 1
+    unit: gb
+    volumegroup: vg_test_ansible
+    pool: POOL_FS7200_TOP
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Create volume into volumegroup using vars
+      # Content suggestion provided by Ansible Lightspeed
+      ibm.spectrum_virtualize.ibm_svc_manage_volume:
+        clustername: "{{ clustername }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        log_path: /tmp/playbook.debug
+        name: "{{ namevolume }}"
+        state: present
+        pool: "{{ pool }}"
+        size: "{{ size }}"
+        unit: "{{ unit }}"
+        volumegroup: "{{ volumegroup }}"

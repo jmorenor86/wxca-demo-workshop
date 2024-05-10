@@ -1,8 +1,0 @@
----
-- name: Add Volume to Volume group ibm spectrum
-  hosts: localhost
-  vars_files:
-    - vars.yml
-
-  tasks:
-    # Get info all volumes with user and password & Get info all volumegroup & Get info snapshotpolicy  into register=snapshotpolicyinfo & print all snapshotpolicyinfo

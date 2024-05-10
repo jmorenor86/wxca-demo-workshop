@@ -1,0 +1,31 @@
+---
+- name: Create volume group to ibm spectrum virtualize
+  hosts: localhost
+  vars:
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    clustername: "{{ _clustername_ }}"
+    volumegroup:
+      name: vg_test_ansible
+      pool: POOL_FS7200_TOP
+      snapshotpolicy: "snapshotpolicy_ansible"
+      replicationpolicy: "PBR"
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+    - name: Create volume group with snapshotpolicy and replicationpolicy using vars volumegroup
+      # Content suggestion provided by Ansible Lightspeed
+      ibm.spectrum_virtualize.ibm_svc_manage_volumegroup:
+        clustername: "{{ clustername }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        log_path: /tmp/playbook.debug
+        name: "{{ volumegroup.name }}"
+        pool: "{{ volumegroup.pool }}"
+        snapshotpolicy: "{{ volumegroup.snapshotpolicy }}"
+        replicationpolicy: "{{ volumegroup.replicationpolicy }}"
+        state: present
+      register: results

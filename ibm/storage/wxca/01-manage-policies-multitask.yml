@@ -1,0 +1,24 @@
+---
+- name: Create policies to ibm spectrum virtualize
+  hosts: localhost
+  vars:
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    clustername: "{{ _clustername_ }}"
+    snapshotpolicy:
+      backupunit: day
+      backupinterval: 1
+      backupstarttime: 2102281800
+      retentiondays: 15
+      name: snapshotpolicy_ansible
+    replicationpolicy:
+      topology: 2-site-async-dr
+      location1system: xxx
+      location2system: xxx
+      rpoalert: 60
+      name: replicationpolicy_ansible
+
+  vars_files:
+    - vars.yml
+  tasks:
+    # Create snapshot policy with ibm_sv_manage and using vars snapshotpolicy & Create replication policy with ibm_sv_manage and using vars replicationpolicy
