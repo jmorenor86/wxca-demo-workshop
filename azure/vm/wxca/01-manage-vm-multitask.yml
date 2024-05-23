@@ -1,0 +1,24 @@
+---
+- name: Create Virtual service instance on Azure
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    resource_group_name: rs_ansible_test
+    resource_group_location: eastus
+    virtual_network_name: vn_ansible_test
+    virtual_network_address_prefix: 10.0.0.0/16
+    subnet_name: sn_ansible_test
+    subnet_address_prefix: 10.0.1.0/24
+    ip_public_name: ip_public_ansible_test
+    security_group_name: sg_ansible_test
+    virtual_network_interface_card_name: vnic_ansible_test
+    storage_account_name: sa_ansible_test
+    virtual_machine_name: vm_ansible_test
+    virtual_machine_admin_username: vm_username_ansible_test
+    virtual_machine_ssh_key_data: "{{ key_data }}"
+
+
+  tasks:
+    # Create resource group & Create virtual network & Create subnet & Create public ip address & Create Network security group that allow ssh and port 80 & Open rule  port 80 into network security group & Create virtual network interface card & Create Storage account & Create VM
+    
